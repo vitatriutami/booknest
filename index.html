@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookshelf App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Impor script kamu di sini -->
+    <!-- Lampirkan `defer` jika pemanggilan dilakukan dalam <head> -->
+    <script defer src="main.js"></script>
+  </head>
+  <body
+    class="h-full w-screen flex justify-center items-center p-4 bg-amber-200"
+  >
+    <!-- <header class="py-4">
+      <h1 class="text-3xl font-bold underline text-clifford">Bookshelf App</h1>
+    </header> -->
+
+    <main class="flex flex-col justify-between gap-2 w-[80%]">
+      <!-- component -->
+      <div class="h-screen w-full md:flex">
+        <!-- BLUE BG -->
+        <div
+          class="relative overflow-hidden flex flex-col md:flex w-full md:w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 justify-around items-center"
+        >
+          <div class="z-50">
+            <h1 class="text-white font-bold text-4xl font-sans">BookNest</h1>
+            <p class="text-white mt-1">
+              Your personal library to organize and track your favorite books.
+            </p>
+
+            <form id="searchBook" data-testid="searchBookForm" class="mt-4">
+              <label for="searchBookTitle" class="text-white font-semibold"
+                >Judul</label
+              >
+              <div class="w-full max-w-sm min-w-[200px]">
+                <div class="relative">
+                  <input
+                    id="searchBookTitle"
+                    type="text"
+                    data-testid="searchBookFormTitleInput"
+                    class="w-full bg-transparent placeholder:text-slate-400 text-white text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                    placeholder="Cari..."
+                  />
+                  <!-- <button
+                    id="searchSubmit"
+                    type="submit"
+                    data-testid="searchBookFormSubmitButton"
+                    class="absolute top-1 right-1 flex items-center rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      class="w-4 h-4 mr-2"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    Search
+                  </button> -->
+                </div>
+                <button
+                  id="searchSubmit"
+                  type="submit"
+                  data-testid="searchBookFormSubmitButton"
+                  class="block w-28 bg-white text-indigo-800 mt-4 py-2 rounded-2xl font-bold mb-2"
+                >
+                  Search Book
+                </button>
+              </div>
+            </form>
+          </div>
+          <div
+            class="absolute -bottom-32 -left-40 w-60 h-60 md:w-80 md:h-80 border-4 border-gray-300 rounded-full border-opacity-30 border-t-8"
+          ></div>
+          <div
+            class="absolute -bottom-40 -left-20 w-60 h-60 md:w-80 md:h-80 border-4 border-gray-300 rounded-full border-opacity-30 border-t-8"
+          ></div>
+          <div
+            class="absolute -top-40 -right-0 w-60 h-60 md:w-80 md:h-80 border-4 border-gray-300 rounded-full border-opacity-30 border-t-8"
+          ></div>
+          <div
+            class="absolute -top-20 -right-20 w-60 h-60 md:w-80 md:h-80 border-4 border-gray-300 rounded-full border-opacity-30 border-t-8"
+          ></div>
+        </div>
+
+        <!-- FORM WHITE BG -->
+        <div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
+          <form class="bg-white" id="bookForm" data-testid="bookForm">
+            <h1 class="text-gray-800 font-bold text-2xl mb-1">
+              Tambahkan Buku Baru
+            </h1>
+            <p class="text-sm font-normal text-gray-600 mb-7">
+              Tulis detail buku yang ingin ditambahkan
+            </p>
+            <div
+              class="flex items-center border-2 hover:border-slate-600 py-2 px-3 rounded-2xl mb-4"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-gray-400"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill="currentColor"
+                  d="M6.012 18H21V4a2 2 0 0 0-2-2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3h15v-2H6.012C5.55 19.988 5 19.805 5 19s.55-.988 1.012-1M8 6h9v2H8z"
+                />
+              </svg>
+              <input
+                id="bookFormTitle"
+                type="text"
+                required
+                data-testid="bookFormTitleInput"
+                class="pl-2 outline-none border-none"
+                name=""
+                placeholder="Judul buku"
+              />
+            </div>
+            <div
+              class="flex items-center border-2 hover:border-slate-600 py-2 px-3 rounded-2xl mb-4"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-gray-400"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <input
+                class="pl-2 outline-none border-none"
+                id="bookFormAuthor"
+                type="text"
+                required
+                data-testid="bookFormAuthorInput"
+                name=""
+                placeholder="Penulis"
+              />
+            </div>
+            <div
+              class="flex items-center border-2 hover:border-slate-600 py-2 px-3 rounded-2xl mb-4"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M21 20V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2M9 18H7v-2h2zm0-4H7v-2h2zm4 4h-2v-2h2zm0-4h-2v-2h2zm4 4h-2v-2h2zm0-4h-2v-2h2zm2-5H5V7h14z"
+                />
+              </svg>
+              <input
+                class="pl-2 outline-none border-none"
+                id="bookFormYear"
+                type="number"
+                required
+                data-testid="bookFormYearInput"
+                placeholder="Tahun"
+              />
+            </div>
+            <div class="flex justify-between items-center gap-2">
+              <button
+                id="bookFormIsComplete"
+                type="submit"
+                data-testid="bookFormIsCompleteCheckbox"
+                class="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
+              >
+                Selesai dibaca
+              </button>
+              <button
+                type="submit"
+                class="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
+              >
+                Belum selesai dibaca
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <section>
+        <h2 class="text-2xl font-semibold">Tambah Buku Baru</h2>
+        <form id="bookForm" data-testid="bookForm">
+          <!-- <div class="w-full max-w-sm min-w-[200px]">
+            <label for="bookFormTitle" class="block mb-2 text-sm text-black">
+              Judul
+            </label>
+            <input
+              id="bookFormTitle"
+              type="text"
+              required
+              data-testid="bookFormTitleInput"
+              class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-black rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+              placeholder="Tulis judul buku..."
+            />
+          </div>
+          <div>
+            <label for="bookFormAuthor">Penulis</label>
+            <input
+              id="bookFormAuthor"
+              type="text"
+              required
+              data-testid="bookFormAuthorInput"
+            />
+          </div>
+          <div>
+            <label for="bookFormYear">Tahun</label>
+            <input
+              id="bookFormYear"
+              type="number"
+              required
+              data-testid="bookFormYearInput"
+            />
+          </div> -->
+          <div>
+            <label for="bookFormIsComplete">Selesai dibaca</label>
+            <input
+              id="bookFormIsComplete"
+              type="checkbox"
+              data-testid="bookFormIsCompleteCheckbox"
+            />
+          </div>
+          <button
+            id="bookFormSubmit"
+            type="submit"
+            data-testid="bookFormSubmitButton"
+          >
+            Masukkan Buku ke rak <span>Belum selesai dibaca</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- <section>
+        <h2 class="text-2xl font-semibold">Cari Buku</h2>
+
+        <form id="searchBook" data-testid="searchBookForm">
+          <label for="searchBookTitle">Judul</label>
+          <div class="w-full max-w-sm min-w-[200px]">
+            <div class="relative">
+              <input
+                id="searchBookTitle"
+                type="text"
+                data-testid="searchBookFormTitleInput"
+                class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                placeholder="Cari..."
+              />
+              <button
+                id="searchSubmit"
+                type="submit"
+                data-testid="searchBookFormSubmitButton"
+                class="absolute top-1 right-1 flex items-center rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="w-4 h-4 mr-2"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+
+                Search
+              </button>
+            </div>
+          </div>
+        </form>
+      </section> -->
+
+      <section>
+        <h2 class="text-2xl font-semibold">Belum selesai dibaca</h2>
+
+        <div id="incompleteBookList" data-testid="incompleteBookList">
+          <!-- 
+            Ini adalah struktur HTML untuk masing-masing buku.
+            Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
+          -->
+          <div data-bookid="123123123" data-testid="bookItem">
+            <h3 data-testid="bookItemTitle" class="text-xl">Judul Buku 1</h3>
+            <p data-testid="bookItemAuthor">Penulis: Penulis Buku 1</p>
+            <p data-testid="bookItemYear">Tahun: 2030</p>
+            <div>
+              <button data-testid="bookItemIsCompleteButton">
+                Selesai dibaca
+              </button>
+              <button data-testid="bookItemDeleteButton">Hapus Buku</button>
+              <button data-testid="bookItemEditButton">Edit Buku</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold">Selesai dibaca</h2>
+
+        <div id="completeBookList" data-testid="completeBookList">
+          <!-- 
+            Ini adalah struktur HTML untuk masing-masing buku.
+            Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
+          -->
+          <div data-bookid="456456456" data-testid="bookItem">
+            <h3 data-testid="bookItemTitle" class="text-xl">Judul Buku 2</h3>
+            <p data-testid="bookItemAuthor">Penulis: Penulis Buku 2</p>
+            <p data-testid="bookItemYear">Tahun: 2030</p>
+            <div>
+              <button data-testid="bookItemIsCompleteButton">
+                Selesai dibaca
+              </button>
+              <button data-testid="bookItemDeleteButton">Hapus Buku</button>
+              <button data-testid="bookItemEditButton">Edit Buku</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
