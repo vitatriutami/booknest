@@ -2,13 +2,18 @@
 console.log("Hello, world!");
 
 document.addEventListener("DOMContentLoaded", () => {
-  flatpickr("#bookFormYear", {
-    dateFormat: "Y", // Format hanya tahun
-    plugins: [
-      new flatpickr.plugins.yearSelectPlugin({
-        start: 1900, // Tahun awal
-        end: new Date().getFullYear(), // Tahun akhir (tahun ini)
-      }),
-    ],
-  });
+  const input = document.getElementById("bookFormYear");
+  const yearDropdown = document.createElement("select");
+  yearDropdown.className = input.className;
+
+  const currentYear = new Date().getFullYear();
+  for (let year = 1900; year <= currentYear; year++) {
+    const option = document.createElement("option");
+    option.value = year;
+    option.textContent = year;
+    yearDropdown.appendChild(option);
+  }
+
+  input.replaceWith(yearDropdown);
 });
+
