@@ -16,6 +16,11 @@
         },
       };
     </script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <!-- Impor script kamu di sini -->
     <!-- Lampirkan `defer` jika pemanggilan dilakukan dalam <head> -->
@@ -173,12 +178,11 @@
                 />
               </svg>
               <input
-                class="pl-2 outline-none border-none"
+                class="pl-2 outline-none border border-gray-300 rounded"
                 id="bookFormYear"
-                type="number"
                 required
                 data-testid="bookFormYearInput"
-                placeholder="Tahun"
+                placeholder="Pilih Tahun"
               />
             </div>
             <div class="flex justify-between items-center gap-2">
