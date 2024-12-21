@@ -29,6 +29,7 @@ function createBookElement(book) {
 
   const titleElement = document.createElement("h3");
   titleElement.textContent = title;
+  titleElement.classList.add("font-semibold");
 
   const authorElement = document.createElement("p");
   authorElement.textContent = `Penulis: ${author}`;
@@ -46,7 +47,7 @@ function createBookElement(book) {
 
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Hapus";
-  deleteButton.classList.add("py-2", "bg-red-500", "text-white", "rounded-2xl"); 
+  deleteButton.classList.add("px-2", "bg-red-500", "text-white", "rounded-2xl"); 
   deleteButton.addEventListener("click", () => {
     removeBook(id);
   });
@@ -57,7 +58,7 @@ function createBookElement(book) {
     const markCompleteButton = document.createElement("button");
     markCompleteButton.textContent = "Selesai";
     markCompleteButton.classList.add(
-      "p-2",
+      "px-2",
       "bg-slate-500",
       "text-white",
       "rounded-2xl"
