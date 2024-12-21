@@ -25,7 +25,7 @@ function loadData() {
 
 // Fungsi untuk membuat elemen buku
 function createBookElement(book) {
-  const { id, title, author, isCompleted } = book;
+  const { id, title, author, year, isCompleted } = book;
 
   const titleElement = document.createElement("h3");
   titleElement.textContent = title;
@@ -33,9 +33,12 @@ function createBookElement(book) {
   const authorElement = document.createElement("p");
   authorElement.textContent = `Penulis: ${author}`;
 
+  const yearElement = document.createElement("p");
+  authorElement.textContent = `Tahun: ${year}`;
+
   const container = document.createElement("div");
-  container.classList.add("book-item", "bg-slate-200", "rounded-lg", "p-2");
-  container.append(titleElement, authorElement);
+  container.classList.add("book-item", "bg-slate-200", "rounded-lg", "p-2", "flex", "flex-col", "gap-1");
+  container.append(titleElement, authorElement, yearElement);
   container.setAttribute("data-id", id);
 
   const buttonContainer = document.createElement("div");
@@ -43,7 +46,7 @@ function createBookElement(book) {
 
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Hapus";
-  deleteButton.classList.add("p-2", "bg-red-500", "text-white", "rounded-2xl"); 
+  deleteButton.classList.add("py-2", "bg-red-500", "text-white", "rounded-2xl"); 
   deleteButton.addEventListener("click", () => {
     removeBook(id);
   });
