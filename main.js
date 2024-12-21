@@ -42,8 +42,8 @@ function createBookElement(book) {
   buttonContainer.classList.add("actions");
 
   const deleteButton = document.createElement("button");
-  deleteButton.classList.add("p-2 bg-red-500 text-white")
   deleteButton.textContent = "Hapus";
+  deleteButton.classList.add("p-2", "bg-red-500", "text-white"); // Tambahkan kelas Tailwind
   deleteButton.addEventListener("click", () => {
     removeBook(id);
   });
