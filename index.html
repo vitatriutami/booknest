@@ -35,7 +35,7 @@
         <div
           class="relative overflow-hidden flex flex-col md:flex w-full md:w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 justify-around items-center"
         >
-          <div class="z-50">
+          <div class="z-50 px-4">
             <h1 class="text-white font-bold text-4xl font-sans">BookNest</h1>
             <p class="text-white mt-1">
               Your personal library to organize and track your favorite books.
@@ -200,10 +200,10 @@
           </form>
         </div>
       </div>
-      <section>
+      <!-- <section>
         <h2 class="text-2xl font-semibold">Tambah Buku Baru</h2>
         <form id="bookForm" data-testid="bookForm">
-          <!-- <div class="w-full max-w-sm min-w-[200px]">
+          <div class="w-full max-w-sm min-w-[200px]">
             <label for="bookFormTitle" class="block mb-2 text-sm text-black">
               Judul
             </label>
@@ -233,7 +233,7 @@
               required
               data-testid="bookFormYearInput"
             />
-          </div> -->
+          </div>
           <div>
             <label for="bookFormIsComplete">Selesai dibaca</label>
             <input
@@ -250,7 +250,7 @@
             Masukkan Buku ke rak <span>Belum selesai dibaca</span>
           </button>
         </form>
-      </section>
+      </section> -->
 
       <!-- <section>
         <h2 class="text-2xl font-semibold">Cari Buku</h2>
@@ -292,9 +292,8 @@
         </form>
       </section> -->
 
-      <section>
+      <section class="bg-rose-200 p-4">
         <h2 class="text-2xl font-semibold">Belum selesai dibaca</h2>
-
         <div id="incompleteBookList" data-testid="incompleteBookList">
           <!-- 
             Ini adalah struktur HTML untuk masing-masing buku.
@@ -305,17 +304,27 @@
             <p data-testid="bookItemAuthor">Penulis: Penulis Buku 1</p>
             <p data-testid="bookItemYear">Tahun: 2030</p>
             <div>
-              <button data-testid="bookItemIsCompleteButton">
+              <button
+                data-testid="bookItemIsCompleteButton"
+                class="p-2 bg-blue-500 text-white"
+              >
                 Selesai dibaca
               </button>
-              <button data-testid="bookItemDeleteButton">Hapus Buku</button>
-              <button data-testid="bookItemEditButton">Edit Buku</button>
+              <button
+                data-testid="bookItemDeleteButton"
+                class="p-2 bg-red-600 text-white"
+              >
+                Hapus Buku
+              </button>
+              <button data-testid="bookItemEditButton" class="p-2 bg-amber-200">
+                Edit Buku
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      <section>
+      <section class="p-4 bg-emerald-300">
         <h2 class="text-2xl font-semibold">Selesai dibaca</h2>
 
         <div id="completeBookList" data-testid="completeBookList">
@@ -328,11 +337,11 @@
             <p data-testid="bookItemAuthor">Penulis: Penulis Buku 2</p>
             <p data-testid="bookItemYear">Tahun: 2030</p>
             <div>
-              <button data-testid="bookItemIsCompleteButton">
+              <button class="p-2 bg-blue-500 text-white" data-testid="bookItemIsCompleteButton">
                 Selesai dibaca
               </button>
-              <button data-testid="bookItemDeleteButton">Hapus Buku</button>
-              <button data-testid="bookItemEditButton">Edit Buku</button>
+              <button class="p-2 bg-red-500 text-white" data-testid="bookItemDeleteButton">Hapus Buku</button>
+              <button class="p-2 bg-amber-200" data-testid="bookItemEditButton">Edit Buku</button>
             </div>
           </div>
         </div>
