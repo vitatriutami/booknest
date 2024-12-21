@@ -120,7 +120,7 @@ function addBook(event) {
 
   // Reset text tombol submit
   const submitButton = document.getElementById("bookFormSubmit");
-  submitButton.innerHTML = `Masukkan buku ke rak <span>Belum selesai dibaca</span>`;
+  submitButton.innerHTML = `Masukkan buku ke rak <span class="text-gray-200">Belum selesai dibaca</span>>`;
 }
 
 // Event listener untuk tombol submit
