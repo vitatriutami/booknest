@@ -34,16 +34,16 @@ function createBookElement(book) {
   authorElement.textContent = `Penulis: ${author}`;
 
   const container = document.createElement("div");
-  container.classList.add("book-item");
+  container.classList.add("book-item", "flex", "gap-2");
   container.append(titleElement, authorElement);
   container.setAttribute("data-id", id);
 
   const buttonContainer = document.createElement("div");
-  buttonContainer.classList.add("actions");
+  buttonContainer.classList.add("actions", "bg-slate-200", "rounded-lg", "p-2");
 
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Hapus";
-  deleteButton.classList.add("p-2", "bg-red-500", "text-white"); // Tambahkan kelas Tailwind
+  deleteButton.classList.add("p-2", "bg-red-500", "text-white", "rounded-2xl"); 
   deleteButton.addEventListener("click", () => {
     removeBook(id);
   });
@@ -53,6 +53,12 @@ function createBookElement(book) {
   if (!isCompleted) {
     const markCompleteButton = document.createElement("button");
     markCompleteButton.textContent = "Selesai";
+    markCompleteButton.classList.add(
+      "p-2",
+      "bg-slate-500",
+      "text-white",
+      "rounded-2xl"
+    ); 
     markCompleteButton.addEventListener("click", () => {
       markBookAsCompleted(id);
     });
