@@ -46,40 +46,18 @@
                 >Judul</label
               >
               <div class="w-full max-w-sm min-w-[200px]">
-                <div class="relative">
-                  <input
-                    id="searchBookTitle"
-                    type="text"
-                    data-testid="searchBookFormTitleInput"
-                    class="w-full bg-transparent placeholder:text-slate-400 text-white text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                    placeholder="Cari..."
-                  />
-                  <!-- <button
-                    id="searchSubmit"
-                    type="submit"
-                    data-testid="searchBookFormSubmitButton"
-                    class="absolute top-1 right-1 flex items-center rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="w-4 h-4 mr-2"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                    Search
-                  </button> -->
-                </div>
+                <input
+                  id="searchBookTitle"
+                  type="text"
+                  data-testid="searchBookFormTitleInput"
+                  class="w-full bg-transparent placeholder:text-slate-400 text-white text-sm border border-slate-300 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-100 hover:border-slate-100 shadow-sm focus:shadow"
+                  placeholder="Cari..."
+                />
                 <button
                   id="searchSubmit"
                   type="submit"
                   data-testid="searchBookFormSubmitButton"
-                  class="block w-28 bg-white text-indigo-800 mt-4 py-2 rounded-2xl font-bold mb-2"
+                  class="block w-28 bg-white text-indigo-800 mt-4 py-1 hover:text-indigo-400 rounded-2xl font-bold mb-2"
                 >
                   Search Book
                 </button>
@@ -101,8 +79,10 @@
         </div>
 
         <!-- FORM WHITE BG -->
-        <div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
-          <form class="bg-white" id="bookForm" data-testid="bookForm">
+        <div
+          class="flex md:w-1/2 justify-center py-10 px-4 items-center bg-white"
+        >
+          <form class="w-full" id="bookForm" data-testid="bookForm">
             <h1 class="text-gray-800 font-bold text-2xl mb-1">
               Tambahkan Buku Baru
             </h1>
@@ -172,14 +152,16 @@
                   d="M21 20V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2M9 18H7v-2h2zm0-4H7v-2h2zm4 4h-2v-2h2zm0-4h-2v-2h2zm4 4h-2v-2h2zm0-4h-2v-2h2zm2-5H5V7h14z"
                 />
               </svg>
-
-              <input
-                id="bookFormYear"
-                class="pl-2 outline-none border border-gray-300 rounded"
-                required
-                data-testid="bookFormYearInput"
-                placeholder="Pilih Tahun"
-              />
+              
+              <div class="flex gap-2">
+                <p class="text-slate-600">Pilih tahun</p>
+                <input
+                  id="bookFormYear"
+                  class="outline-none border border-gray-300 rounded"
+                  required
+                  data-testid="bookFormYearInput"
+                />
+              </div>
             </div>
             <div class="">
               <label for="bookFormIsComplete">Selesai dibaca</label>
@@ -194,10 +176,10 @@
               type="submit"
               data-testid="bookFormSubmitButton"
               type="submit"
-              class="block w-full bg-indigo-600 mt-4 p-2 rounded-2xl text-white font-semibold mb-2"
+              class="hover:text-gray-200 block w-full bg-indigo-600 mt-4 p-2 rounded-2xl text-white font-semibold mb-2"
             >
               Masukkan buku ke rak
-              <span class="text-gray-200">Belum selesai dibaca</span>
+              <span class="text-rose-200">Belum selesai dibaca</span>
             </button>
           </form>
         </div>
@@ -294,9 +276,13 @@
         </form>
       </section> -->
 
-      <section class="bg-rose-200 p-4">
-        <h2 class="text-2xl font-semibold">Belum selesai dibaca</h2>
-        <div id="incompleteBookList" data-testid="incompleteBookList" class="flex flex-col gap-2">
+      <section class="bg-rose-200 p-4 rounded-lg">
+        <h2 class="text-2xl font-semibold mb-2">Belum selesai dibaca</h2>
+        <div
+          id="incompleteBookList"
+          data-testid="incompleteBookList"
+          class="flex flex-col gap-2"
+        >
           <!-- 
             Ini adalah struktur HTML untuk masing-masing buku.
             Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
@@ -326,10 +312,14 @@
         </div>
       </section>
 
-      <section class="p-4 bg-emerald-300">
-        <h2 class="text-2xl font-semibold">Selesai dibaca</h2>
+      <section class="p-4 bg-emerald-300 rounded-lg">
+        <h2 class="text-2xl font-semibold mb-2">Selesai dibaca</h2>
 
-        <div id="completeBookList" data-testid="completeBookList" class="flex flex-col gap-2">
+        <div
+          id="completeBookList"
+          data-testid="completeBookList"
+          class="flex flex-col gap-2"
+        >
           <!-- 
             Ini adalah struktur HTML untuk masing-masing buku.
             Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
