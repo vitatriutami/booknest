@@ -34,12 +34,12 @@ function createBookElement(book) {
   authorElement.textContent = `Penulis: ${author}`;
 
   const container = document.createElement("div");
-  container.classList.add("book-item", "flex", "gap-2");
+  container.classList.add("book-item", "bg-slate-200", "rounded-lg", "p-2");
   container.append(titleElement, authorElement);
   container.setAttribute("data-id", id);
 
   const buttonContainer = document.createElement("div");
-  buttonContainer.classList.add("actions", "bg-slate-200", "rounded-lg", "p-2");
+  buttonContainer.classList.add("actions", "flex", "gap-2");
 
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Hapus";
