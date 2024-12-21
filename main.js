@@ -87,20 +87,22 @@ function renderBooks() {
     }
   }
 }
-
 // Fungsi untuk menambahkan buku baru
 function addBook(event) {
   event.preventDefault();
 
   const title = document.getElementById("bookFormTitle").value;
   const author = document.getElementById("bookFormAuthor").value;
+  const year = document.getElementById("bookFormYear").value;
+  const isCompleted = document.getElementById("bookFormIsComplete").checked;
   const id = +new Date();
 
   const newBook = {
     id,
     title,
     author,
-    isCompleted: false,
+    year,
+    isCompleted,
   };
 
   books.push(newBook);
@@ -109,7 +111,27 @@ function addBook(event) {
 
   // Reset form
   document.getElementById("bookForm").reset();
+
+  // Reset text tombol submit
+  const submitButton = document.getElementById("bookFormSubmit");
+  submitButton.innerHTML = `Masukkan buku ke rak <span>Belum selesai dibaca</span>`;
 }
+
+// Event listener untuk tombol submit
+document.getElementById("bookForm").addEventListener("submit", addBook);
+
+// Event listener untuk checkbox selesai dibaca
+document.getElementById("bookFormIsComplete").addEventListener("change", (event) => {
+  const isCompleted = event.target.checked;
+  const submitButton = document.getElementById("bookFormSubmit");
+
+  if (isCompleted) {
+    submitButton.innerHTML = `Masukkan buku ke rak <span>Selesai dibaca</span>`;
+  } else {
+    submitButton.innerHTML = `Masukkan buku ke rak <span>Belum selesai dibaca</span>`;
+  }
+});
+
 
 // Fungsi untuk menghapus buku
 function removeBook(id) {
