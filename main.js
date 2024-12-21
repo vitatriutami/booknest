@@ -27,16 +27,23 @@ function loadData() {
 function createBookElement(book) {
   const { id, title, author, year, isCompleted } = book;
 
+  // Title element
   const titleElement = document.createElement("h3");
   titleElement.textContent = title;
   titleElement.classList.add("font-semibold");
+  titleElement.setAttribute("data-testid", "bookItemTitle");
 
+  // Author element
   const authorElement = document.createElement("p");
   authorElement.textContent = `Penulis: ${author}`;
+  authorElement.setAttribute("data-testid", "bookItemAuthor");
 
+  // Year element
   const yearElement = document.createElement("p");
   yearElement.textContent = `Tahun: ${year}`;
+  yearElement.setAttribute("data-testid", "bookItemYear");
 
+  // Container
   const container = document.createElement("div");
   container.classList.add(
     "book-item",
@@ -48,11 +55,14 @@ function createBookElement(book) {
     "gap-1"
   );
   container.append(titleElement, authorElement, yearElement);
-  container.setAttribute("data-id", id);
+  container.setAttribute("data-testid", "bookItem");
+  container.setAttribute("data-bookid", id);
 
+  // Button container
   const buttonContainer = document.createElement("div");
   buttonContainer.classList.add("actions", "flex", "gap-2");
 
+  // Delete button
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Hapus";
   deleteButton.classList.add(
@@ -62,12 +72,14 @@ function createBookElement(book) {
     "rounded-2xl",
     "hover:text-black"
   );
+  deleteButton.setAttribute("data-testid", "bookItemDeleteButton");
   deleteButton.addEventListener("click", () => {
     removeBook(id);
   });
 
   buttonContainer.append(deleteButton);
 
+  // Completed/Uncompleted button
   if (!isCompleted) {
     const markCompleteButton = document.createElement("button");
     markCompleteButton.textContent = "Selesai";
@@ -78,6 +90,7 @@ function createBookElement(book) {
       "rounded-2xl",
       "hover:text-black"
     );
+    markCompleteButton.setAttribute("data-testid", "bookItemIsCompleteButton");
     markCompleteButton.addEventListener("click", () => {
       markBookAsCompleted(id);
     });
@@ -92,6 +105,10 @@ function createBookElement(book) {
       "rounded-2xl",
       "hover:text-rose-300"
     );
+    markUncompleteButton.setAttribute(
+      "data-testid",
+      "bookItemIsCompleteButton"
+    );
     markUncompleteButton.addEventListener("click", () => {
       markBookAsUncompleted(id);
     });
@@ -101,6 +118,7 @@ function createBookElement(book) {
   container.append(buttonContainer);
   return container;
 }
+
 
 // Fungsi untuk menampilkan buku
 function renderBooks() {
