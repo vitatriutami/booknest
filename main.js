@@ -41,7 +41,7 @@ function createBookElement(book) {
   // Year element
   const yearElement = document.createElement("p");
   yearElement.textContent = `Tahun: ${year}`;
-  yearElement.setAttribute("data-testid", "bookItemYearInput");
+  yearElement.setAttribute("data-testid", "bookItemYear");
 
   // Container
   const container = document.createElement("div");
