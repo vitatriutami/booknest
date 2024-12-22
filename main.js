@@ -142,7 +142,7 @@ function addBook(event) {
 
   const title = document.getElementById("bookFormTitle").value;
   const author = document.getElementById("bookFormAuthor").value;
-  const yearInput = document.getElementById("bookFormYear");
+  const yearInput = document.getElementById("bookFormYearInput");
   const year = Number(yearInput.value);
   const isComplete = document.getElementById("bookFormIsComplete").checked;
   const id = +new Date();
@@ -179,7 +179,7 @@ function addBook(event) {
 }
 
 // Event listener untuk year
-document.getElementById("bookFormYear").addEventListener("input", (event) => {
+document.getElementById("bookFormYearInput").addEventListener("input", (event) => {
   const input = event.target;
   const yearValue = input.value;
 
