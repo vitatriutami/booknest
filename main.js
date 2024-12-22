@@ -25,12 +25,12 @@ function loadData() {
 
 // Fungsi untuk membuat elemen buku
 function createBookElement(book) {
-  const { id, title, author, year, isCompleted } = book;
+  const { id, title, author, year, isComplete } = book;
 
   // Title element
   const titleElement = document.createElement("h3");
   titleElement.textContent = title;
-  titleElement.classList.add("font-semibold");
+  titleElement.classList.add("font-semibold", "text-xl");
   titleElement.setAttribute("data-testid", "bookItemTitle");
 
   // Author element
@@ -49,7 +49,7 @@ function createBookElement(book) {
     "book-item",
     "bg-slate-200",
     "rounded-lg",
-    "p-2",
+    "p-4",
     "flex",
     "flex-col",
     "gap-1"
@@ -60,13 +60,13 @@ function createBookElement(book) {
 
   // Button container
   const buttonContainer = document.createElement("div");
-  buttonContainer.classList.add("actions", "flex", "gap-2");
+  buttonContainer.classList.add("actions", "flex", "gap-2", "pt-2");
 
   // Delete button
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Hapus";
   deleteButton.classList.add(
-    "px-2",
+    "p-2",
     "bg-red-500",
     "text-white",
     "rounded-2xl",
@@ -80,11 +80,11 @@ function createBookElement(book) {
   buttonContainer.append(deleteButton);
 
   // Completed/Uncompleted button
-  if (!isCompleted) {
+  if (!isComplete) {
     const markCompleteButton = document.createElement("button");
     markCompleteButton.textContent = "Selesai";
     markCompleteButton.classList.add(
-      "px-2",
+      "p-2",
       "bg-emerald-500",
       "text-white",
       "rounded-2xl",
@@ -119,7 +119,6 @@ function createBookElement(book) {
   return container;
 }
 
-
 // Fungsi untuk menampilkan buku
 function renderBooks() {
   const uncompletedBookList = document.getElementById("incompleteBookList");
@@ -130,29 +129,41 @@ function renderBooks() {
 
   for (const book of books) {
     const bookElement = createBookElement(book);
-    if (book.isCompleted) {
+    if (book.isComplete) {
       completedBookList.append(bookElement);
     } else {
       uncompletedBookList.append(bookElement);
     }
   }
-}   
+}
 // Fungsi untuk menambahkan buku baru
 function addBook(event) {
   event.preventDefault();
 
   const title = document.getElementById("bookFormTitle").value;
   const author = document.getElementById("bookFormAuthor").value;
-  const year = document.getElementById("bookFormYear").value;
-  const isCompleted = document.getElementById("bookFormIsComplete").checked;
+  const yearInput = document.getElementById("bookFormYear");
+  const year = Number(yearInput.value);
+  const isComplete = document.getElementById("bookFormIsComplete").checked;
   const id = +new Date();
+
+  // Validasi input year
+  if (yearInput.value.length > 4) {
+    alert("Tahun tidak boleh lebih dari 4 digit.");
+    return;
+  }
+
+  if (isNaN(year) || year < 1900 || year > new Date().getFullYear()) {
+    alert("Masukkan tahun yang valid antara 1900 hingga tahun sekarang.");
+    return;
+  }
 
   const newBook = {
     id,
     title,
     author,
     year,
-    isCompleted,
+    isComplete,
   };
 
   books.push(newBook);
@@ -167,6 +178,17 @@ function addBook(event) {
   submitButton.innerHTML = `Masukkan buku ke rak <span class="text-rose-200">Belum selesai dibaca</span>`;
 }
 
+// Event listener untuk year
+document.getElementById("bookFormYear").addEventListener("input", (event) => {
+  const input = event.target;
+  const yearValue = input.value;
+
+  if (yearValue.length > 4) {
+    alert("Tahun tidak boleh lebih dari 4 digit.");
+    input.value = yearValue.slice(0, 4); // Memotong input ke 4 karakter pertama
+  }
+});
+
 // Event listener untuk tombol submit
 document.getElementById("bookForm").addEventListener("submit", addBook);
 
@@ -174,13 +196,13 @@ document.getElementById("bookForm").addEventListener("submit", addBook);
 document
   .getElementById("bookFormIsComplete")
   .addEventListener("change", (event) => {
-    const isCompleted = event.target.checked;
+    const isComplete = event.target.checked;
     const submitButton = document.getElementById("bookFormSubmit");
 
-    if (isCompleted) {
-      submitButton.innerHTML = `Masukkan buku ke rak <span>Selesai dibaca</span>`;
+    if (isComplete) {
+      submitButton.innerHTML = `Masukkan buku ke rak <span class="text-emerald-200">Selesai dibaca</span>`;
     } else {
-      submitButton.innerHTML = `Masukkan buku ke rak <span>Belum selesai dibaca</span>`;
+      submitButton.innerHTML = `Masukkan buku ke rak <span class="text-rose-200">Belum selesai dibaca</span>`;
     }
   });
 
@@ -195,7 +217,7 @@ function removeBook(id) {
 function markBookAsCompleted(id) {
   const book = books.find((book) => book.id === id);
   if (book) {
-    book.isCompleted = true;
+    book.isComplete = true;
     saveData();
     renderBooks();
   }
@@ -205,7 +227,7 @@ function markBookAsCompleted(id) {
 function markBookAsUncompleted(id) {
   const book = books.find((book) => book.id === id);
   if (book) {
-    book.isCompleted = false;
+    book.isComplete = false;
     saveData();
     renderBooks();
   }
@@ -214,22 +236,22 @@ function markBookAsUncompleted(id) {
 // Event Listener
 document.addEventListener("DOMContentLoaded", () => {
   // Year picker
-  const input = document.getElementById("bookFormYear");
-  const yearDropdown = document.createElement("select");
-  yearDropdown.className = input.className;
-  yearDropdown.id = input.id;
-  yearDropdown.required = true;
-  yearDropdown.setAttribute("data-testid", input.getAttribute("data-testid"));
+  //   const input = document.getElementById("bookFormYear");
+  //   const yearDropdown = document.createElement("input");
+  //   yearDropdown.className = input.className;
+  //   yearDropdown.id = input.id;
+  //   yearDropdown.required = true;
+  //   yearDropdown.setAttribute("data-testid", input.getAttribute("data-testid"));
 
-  const currentYear = new Date().getFullYear();
-  for (let year = 1900; year <= currentYear; year++) {
-    const option = document.createElement("option");
-    option.value = year;
-    option.textContent = year;
-    yearDropdown.appendChild(option);
-  }
+  //   const currentYear = new Date().getFullYear();
+  //   for (let year = 1900; year <= currentYear; year++) {
+  //     const option = document.createElement("option");
+  //     option.value = year;
+  //     option.textContent = year;
+  //     yearDropdown.appendChild(option);
+  //   }
 
-  input.replaceWith(yearDropdown);
+  //   input.replaceWith(yearDropdown);
 
   //   BOOK FORM
   const bookForm = document.getElementById("bookForm");
